@@ -1,0 +1,141 @@
+<%- include ('_layouts/header'); -%>
+
+<% if (typeof cart !== "undefined") { %>
+<h1 class="page-title"></h1>
+<br><br>
+<table class="table table-striped alignmiddle">
+    
+    <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th></th>
+        &nbsp;&nbsp;
+        <th>Subtotal</th>
+    </tr>
+    
+    <% var total = 0; %>
+    <% cart.forEach(function(product){ %>
+    <% var sub = parseFloat(product.qty * product.price).toFixed(2) %>
+    <% total += +sub %>
+    <tr>
+        <td><img class="cpi" src="<%= product.image %>" alt=""></td>
+        <td><%= product.title %></td>
+        <td><%= product.price %></td>
+        <td><%= product.qty %></td>
+        <td>
+            <a href="/cart/update/<%= product.title %>?action=add">+</a>&nbsp;
+            <a href="/cart/update/<%= product.title %>?action=remove">-</a>&nbsp;
+
+            <a href="/cart/update/<%= product.title %>?action=clear">Clear</a>&nbsp;
+        </td>
+        <td>Rs<%= sub %></td>
+    </tr>
+    <% }); %>
+    <tr>
+        <td colspan="6" align="right"><b>Total: </b> Rs.<%= parseFloat(total).toFixed(2) %></td>
+    </tr>
+    <tr>
+        <td colspan="3" align="left">
+            <a class="clearcart btn btn-danger" href="/cart/clear">Clear cart</a>
+        </td>
+        <br>
+        <td colspan="2" align="right">
+            <a class="btn btn-primary buynow" href="/">Pay with Paypal</a>
+            <!--<a href="/cart/pay" class="btn btn-primary">Buy with paytm</a> -->
+           <!-- <button id="some_id" class="btn btn-lg btn-primary"
+            >Pay Now <span class="glyphicon glyphicon-check"></span></button> -->
+            <br>
+            <br>
+</td>
+<td colspan="4" align="right">
+
+            <input id="info" type="button" class="btn  btn-primary" value="Pay with paytm">
+           </td>  
+
+        
+    </tr>
+    
+</table>
+<form class="pp" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+    <input type="hidden" name="cmd" value="_cart">
+    <input type="hidden" name="upload" value="1">
+    <input type="hidden" name="business" value="ayushibansal781@gmail.com">
+    <% var num = 0; %>
+    <% cart.forEach(function(p){ %>
+        <% num++ %>
+        <input type="hidden" name="item_name_<%= num %>" value="<%= p.title %>">
+        <input type="hidden" name="amount_<%= num %>" value="<%= p.price %>">
+        <input type="hidden" name="quantity_<%= num %>" value="<%= p.qty %>">
+    <% }); %>
+    <input type="hidden" name="currency_code" value="INR">
+    <input type="hidden" name="amount" value="<%= total %>">
+    </form>
+    <% } else {%>
+        <br>
+    <h3 style= "font-size:20px ;color:#107896" class="text-center">Your cart is empty.<br>Start buying today!!</h3>
+    
+    <% } %>
+
+
+    <form id="theform" class="" action="/cart/paynow" method="post">
+        <div class="form-group">
+          <label for="">Name: </label>
+          <input class="form-control" type="text" name="name" value="">
+        </div>
+        <div class="form-group">
+          <label for="">Email: </label>
+          <input class="form-control" type="text" name="email" value="">
+        </div>
+        <div class="form-group">
+          <label for="">Phone: </label>
+          <input class="form-control" type="text" name="phone" value="">
+        </div>
+          <div class="form-group">
+          <label for="">Amount: </label>
+          <input class="form-control" type="text" name="amount" value="">
+        </div>
+        <div class="form-group">
+          <button class="btn form-control btn-primary">Pay Now</button>
+        </div>
+      </form>
+
+<script>
+    
+$(function() {
+
+   
+    $('a.clearcart').on('click', function () {
+        if (!confirm('Confirm clear cart'))
+            return false;
+    });
+    $('a.buynow').on('click', function (e) {
+       e.preventDefault();
+       
+       $.get('/cart/buynow', function() {
+           $('form.pp input[type=image]').click();
+           $('.ajaxbg').show();
+       });
+   });
+    
+   
+        
+});
+
+var button = document.getElementById("info");
+var myDiv = document.getElementById("theform");
+
+function toggle() {
+    myDiv.style.visibility = myDiv.style.visibility === "hidden" ? "visible" :  "hidden";
+}
+
+toggle();
+
+button.addEventListener("click", toggle, false);
+    
+             
+
+</script>
+
+<%- include ('_layouts/footer'); -%>

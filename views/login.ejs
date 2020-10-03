@@ -1,0 +1,24 @@
+<%- include ('_layouts/header') -%>
+
+<br/><br/>
+<h1 style=" font-size:25px ;color:#f34671"><b><%= title %></b></h1>
+
+<form method="post" action="/users/login">
+
+    
+    <br/>
+    <div class="form-group">
+        <label style= "font-size:15px ;color:#107896">Username</label>
+        <input type="text" name="username" class="form-control" placeholder="Enter your Username">
+    </div>
+
+    <div class="form-group">
+        <label style= "font-size:15px ;color:#107896">Password</label>
+        <input type="password" name="password" class="form-control"  placeholder="Your Password">
+    </div>
+    
+   
+    <button type="submit" style="border:none;text-align:center;color:white;background-color:#107896" class="btn btn-default">Login</button>
+</form>
+
+<%- include ('_layouts/footer') -%>

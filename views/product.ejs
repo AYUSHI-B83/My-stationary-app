@@ -1,0 +1,50 @@
+<%- include ('_layouts/header') -%>
+
+
+
+<div class="row">
+    <br><br>
+    <div class="col-xs-12 col-md-7">
+        <br/><br/>
+    <h1 class="page-header  " style="font-size:25px ;color:#C02F1D;"><b><%= p.title %></b></h1>
+    <br/>
+    
+        <img class="spi" id="imgPreview" class="float-left" src="/product_images/<%= p.id %>/<%= p.image %>" alt="">
+        
+    </div>
+    
+    <div class="col-xs-12 col-md-7">
+        <p style="font-size:18px ;color:#107896;"><%= p.desc %></p>
+        <p style="font-size:18px ;color:#1287a8;">Rs.<%= parseFloat(p.price).toFixed(2) %></p>
+        <% if (loggedIn) { %>
+        <p style="font-size:20px ;color:blue;"><a href="/cart/add/<%= p.slug %>">Add to cart</a></p>
+        <% } else {%>
+            <p style="font-size:20px ;color:blue;">You must be logged in</p>
+            <% } %>
+        
+    </div>
+    <div class="col-xs-12">
+        <ul class="gallery">
+            <% galleryImages.forEach(function(image){ %>
+            <% if (image != "thumbs") { %>
+            <li>
+                <a data-fancybox="gallery" href="/product_images/<%= p.id %>/gallery/<%= image %>">
+                    <img src="/product_images/<%= p.id %>/gallery/thumbs/<%= image %>" alt="">
+                </a>
+            </li>
+            <% } %>
+            <% }); %>
+        </ul>
+    </div>
+</div>
+
+<script>
+    var yourImg = document.getElementById('imgPreview');
+if(yourImg && yourImg.style) {
+    yourImg.style.height = '100px';
+    yourImg.style.width = '200px';
+}
+</script>
+
+
+<%- include ('_layouts/footer') -%>

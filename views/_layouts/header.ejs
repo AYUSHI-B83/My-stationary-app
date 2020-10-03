@@ -1,0 +1,181 @@
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+  <meta name="description" content="" />
+  <meta
+    name="author"
+    content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+  />
+  <meta name="generator" content="Jekyll v4.1.1" />
+  <title></title>
+  <link
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+    rel="stylesheet"
+  />
+
+  <link
+    href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    rel="stylesheet"
+    id="bootstrap-css"
+  />
+  <script src="https://cdn.tiny.cloud/1/60101kop7c57jorwgi1qa4wfvt23zr58ds5dzghqrpg4ncrl/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link
+    href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="ajaxbg">
+    <div class="ajaxinner">
+      <h3>You are being directed to payment gateways</h3>
+      <img src="/images/ajax-loader.gif" />
+    </div>
+  </div>
+  <!-- Fixed navbar 
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">MyShoppingCart</a>
+        </div>
+        <div id="navbar" class="navbar navbar-expand-sm bg-light">
+          <a class="navbar-brand" href="/">MyShoppingCart</a>
+            <ul class="nav navbar-nav">
+              <% pages.forEach(function(page){ %>
+                <% if (page.slug == "home") { %>
+                <li><a href="/"><%= page.title %></a></li>
+                <% } else {%>
+                <li><a href="/<%= page.slug %>"><%= page.title %></a></li>
+                <% } %>
+                <% }); %> -->
+
+  <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+    <div class="flex items-center flex-shrink-0 text-white mr-6">
+      <span class="font-bold text-xl tracking-tight " style=" font-size:35px ;color:#fff">MyStationary &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       
+       
+      </span>
+    </div>
+
+    <div class="block lg:hidden">
+      <button
+        class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
+      >
+        <svg
+          class="fill-current h-3 w-3"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>Menu</title>
+          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="w-full block flex-grow lg:flex lg:items-center lg:w-auto ml-auto"
+    >
+      <div class="text-sm lg:flex-grow mr-auto" style="font-size:20px ;color:#fff; word-spacing:  5px;">
+        <% pages.forEach(function(page){ %> <% if (page.slug == "home") { %>
+        <a
+          class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+          href="/"
+          ><%= page.title %></a
+        >
+
+        <% } else {%>
+        <a
+          class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+          href="/<%= page.slug %>"
+          ><%= page.title %></a
+        >
+
+        <% } %> <% }); %>
+        <a
+          class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+          href="/cart/checkout"
+          >MyCart( <% if (typeof cart !== "undefined") { %> <%= cart.length %>
+          <% } else {%> 0 <% } %> )</a
+        >
+
+        <% if (user) { %>
+        <a
+          class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+          href="/users/logout"
+          >Logout</a
+        >
+
+        <% } else {%>
+        <a
+          class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+          href="/users/Register"
+          >Register</a
+        >
+
+        <a
+          class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+          href="/users/login"
+          >Login</a
+        >
+        <% } %> <% if (user && user.admin ==1) { %>
+        <a
+          class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+          href="/admin/pages"
+          >Admin Area</a
+        >
+        <% } %>
+
+        <div class="nav navbar-nav navbar-right"></div>
+      </div>
+    </div>
+  </nav>
+</body>
+
+<div class="container">
+  <%- messages('messages',locals) %> <% if (errors) { %> <%
+  errors.forEach(function(error){ %>
+  <div class="class alert alert-danger"><%= error.msg %></div>
+  <% }); %> <% } %>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <br>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <a style=" font-size:18px ;color:#0c1446" href="/products/all">All products</a>
+          <span class="badge badge-primary badge-pill">New</span>
+
+        </li>
+        <% categories.forEach(function(c){ %>
+        <li class="list-group-item">
+          <% if (c.title == "Our-exclusive" ) { %>
+
+          <a style=" font-size:18px ;color:#0c1446" href="/products/<%= c.slug %>"><%= c.title %></a>
+          <span class="badge badge-primary badge-pill">Check out!!</span>
+
+          
+
+          <% } else {%> 
+            <a style=" font-size:18px ;color:#0c1446" href="/products/<%= c.slug %>"><%= c.title %></a>
+            <% } %>
+        </li>
+        <% }); %>
+      </ul>
+    </div>
+    <div class="col-xs-12 col-md-1"></div>
+    <div class="col-xs-12 col-md-8">
+ 
