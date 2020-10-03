@@ -1,7 +1,7 @@
 var express= require('express');
 var router= express.Router(); 
 var passport=require('passport');
-var bcrypt=require('bcrypt');
+var bcrypt=require('bcrypt-nodejs');
 // Get users model
 var User = require('../models/users');
 
