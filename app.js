@@ -14,7 +14,10 @@ const { homedir } = require('os');
 const resizeOptimizeImages = require('resize-optimize-images');
 
 // Connect to db
-mongoose.connect('mongodb://localhost/CART');
+const uri='mongodb+srv://AYUSHI:AYUSHI@cluster0.lsd8d.mongodb.net/<dbname>?retryWrites=true&w=majority';
+mongoose.connect(uri,{
+    dbName:'CART'
+});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {

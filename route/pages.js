@@ -1,5 +1,6 @@
 var express= require('express');
 var router= express.Router(); 
+const mongoose=require('mongoose');
 
 // Get Page model
 var Page = require('../models/page');
@@ -9,9 +10,10 @@ var Page = require('../models/page');
  */
 router.get('/', function (req, res) {
     
-    Page.findOne({slug: 'home'}, function (err, page) {
+    Page.findOne({slug:"home"}, function (err, page) {
         if (err)
             console.log(err);
+            
 
         res.render('index', {
             title: page.title,
