@@ -15,7 +15,7 @@ const resizeOptimizeImages = require('resize-optimize-images');
 
 // Connect to db
 const uri='mongodb+srv://AYUSHI:AYUSHI@cluster0.lsd8d.mongodb.net/<dbname>?retryWrites=true&w=majority';
-mongoose.connect(process.env.MONGODB_URIuri,{
+mongoose.connect(process.env.MONGODB_URI||uri,{
     dbName:'CART'
 });
 var db = mongoose.connection;
