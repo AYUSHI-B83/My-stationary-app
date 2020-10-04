@@ -59,6 +59,13 @@ Category.find(function (err, categories) {
         app.locals.categories = categories;
     }
 });
+Page.find(function (err, pages) {
+    if (err) {
+        console.log(err);
+    } else {
+        app.locals.pages = pages;
+    }
+});
 
 
 //epress file upload

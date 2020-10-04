@@ -37,28 +37,7 @@
       <img src="/images/ajax-loader.gif" />
     </div>
   </div>
-  <!-- Fixed navbar 
-  <nav class="navbar navbar-inverse">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">MyShoppingCart</a>
-        </div>
-        <div id="navbar" class="navbar navbar-expand-sm bg-light">
-          <a class="navbar-brand" href="/">MyShoppingCart</a>
-            <ul class="nav navbar-nav">
-              <% pages.forEach(function(page){ %>
-                <% if (page.slug == "home") { %>
-                <li><a href="/"><%= page.title %></a></li>
-                <% } else {%>
-                <li><a href="/<%= page.slug %>"><%= page.title %></a></li>
-                <% } %>
-                <% }); %> -->
+  
 
   <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
     <div class="flex items-center flex-shrink-0 text-white mr-6">
@@ -90,7 +69,8 @@
       class="w-full block flex-grow lg:flex lg:items-center lg:w-auto ml-auto"
     >
       <div class="text-sm lg:flex-grow mr-auto" style="font-size:20px ;color:#fff; word-spacing:  5px;">
-        <% pages.forEach(function(page){ %> <% if (page.slug == "home") { %>
+        <% pages.forEach(function(page){ %>
+          <% if (page.slug == "home") { %>
         <a
           class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
           href="/"
